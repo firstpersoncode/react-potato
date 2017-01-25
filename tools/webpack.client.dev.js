@@ -1,8 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const CONFIG = require('./webpack.base')
+const webpack = require('webpack');
+const CONFIG = require('./webpack.base');
 
-const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG
+const { CLIENT_ENTRY, CLIENT_OUTPUT } = CONFIG;
 
 module.exports = {
   devtool: 'eval',
@@ -10,7 +9,7 @@ module.exports = {
     main: [
       'webpack/hot/only-dev-server',
       'webpack-hot-middleware/client',
-      CLIENT_ENTRY
+      CLIENT_ENTRY,
     ],
     vendor: [
       'react',
@@ -18,14 +17,14 @@ module.exports = {
       'react-router',
       'redux',
       'react-redux',
-      'aphrodite'
-    ]
+      'aphrodite',
+    ],
   },
   output: {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     publicPath: '/',
-    path: CLIENT_OUTPUT
+    path: CLIENT_OUTPUT,
   },
   module: {
     preLoaders: [
@@ -33,8 +32,8 @@ module.exports = {
         // set up standard-loader as a preloader
         test: /\.jsx?$/,
         loader: 'eslint',
-        exclude: /(node_modules)/
-      }
+        exclude: /(node_modules)/,
+      },
     ],
     loaders: [
       {
@@ -43,10 +42,10 @@ module.exports = {
         exclude: /(node_modules|server)/,
         query: {
           cacheDirectory: true,
-          presets: ["es2015", "react", "stage-0"]
-        }
+          presets: ['es2015', 'react', 'stage-0'],
+        },
       },
-    ]
+    ],
   },
   eslint: {
     failOnWarning: false,
@@ -55,10 +54,10 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
-      '__DEV__': true
+      __DEV__: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js', 2),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
   ],
-}
+};

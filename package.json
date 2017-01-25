@@ -10,7 +10,9 @@
     "start:prod": "cross-env NODE_ENV=production node ./build/server.js",
     "heroku-postbuild": "npm run build",
     "build": "webpack -p --config ./tools/webpack.client.prod.js && webpack -p --config ./tools/webpack.server.prod.js",
-    "clean": "rm -rf build"
+    "clean": "rm -rf build",
+    "lint": "eslint client common server test tools",
+    "lint:fix": "eslint client common server test tools --fix"
   },
   "repository": {
     "type": "git",
