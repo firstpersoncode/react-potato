@@ -32,7 +32,7 @@ module.exports = {
       {
         // set up standard-loader as a preloader
         test: /\.jsx?$/,
-        loader: 'standard',
+        loader: 'eslint',
         exclude: /(node_modules)/
       }
     ],
@@ -48,9 +48,9 @@ module.exports = {
       },
     ]
   },
-  standard: {
-    // config options to be passed through to standard e.g.
-    parser: 'babel-eslint'
+  eslint: {
+    failOnWarning: false,
+    failOnError: true,
   },
   plugins: [
     new webpack.DefinePlugin({
