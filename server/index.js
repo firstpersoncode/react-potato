@@ -1,5 +1,6 @@
 /* eslint global-require: 0 */
-
+// eslint-disable-next-line
+import csshook from 'css-modules-require-hook/preset';
 import http from 'http';
 import express from 'express';
 import helmet from 'helmet';
@@ -14,7 +15,6 @@ import ReactDOM from 'react-dom/server';
 import { createMemoryHistory, RouterContext, match } from 'react-router';
 import { Provider } from 'react-redux';
 import { trigger } from 'redial';
-import { StyleSheetServer } from 'aphrodite';
 import Helm from 'react-helmet'; // because we are already using helmet
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -103,12 +103,7 @@ export const createServer = (config) => {
             </Provider>
           );
 
-          // just call html = ReactDOM.renderToString(InitialView)
-          // to if you don't want Aphrodite. Also change renderFullPage
-          // accordingly
-          const data = StyleSheetServer.renderStatic(
-            () => ReactDOM.renderToString(InitialView)
-          );
+          const html = ReactDOM.renderToString(InitialView);
           const head = Helm.rewind();
           res.status(200).send(`
             <!DOCTYPE html>
@@ -119,6 +114,7 @@ export const createServer = (config) => {
                 ${head.title.toString()}
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="shortcut icon" href="/favicon.ico">
+                ${__PROD__ ? '<link rel="stylesheet" type="text/css" href="/assets/style.css">' : ''}
                 ${head.meta.toString()}
                 ${head.link.toString()}
                 <style>
@@ -153,11 +149,9 @@ export const createServer = (config) => {
                     padding: 0;
                   }
                 </style>
-                <style data-aphrodite>${data.css.content}</style>
               </head>
               <body>
-                <div id="root">${data.html}</div>
-                <script>window.renderedClassNames = ${JSON.stringify(data.css.renderedClassNames)};</script>
+                <div id="root">${html}</div>
                 <script>window.INITIAL_STATE = ${JSON.stringify(initialState)};</script>
                 <script src="${__PROD__ ? assets.vendor.js : '/vendor.js'}"></script>
                 <script async src="${__PROD__ ? assets.main.js : '/main.js'}" ></script>

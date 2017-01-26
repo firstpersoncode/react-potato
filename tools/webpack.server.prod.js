@@ -3,9 +3,10 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CONFIG = require('./webpack.base');
-const { SERVER_ENTRY, SERVER_OUTPUT } = CONFIG;
+const { SERVER_ENTRY, SERVER_OUTPUT, CSS_OUTPUT } = CONFIG;
 
 function getExternals() {
   const nodeModules = fs.readdirSync(path.join(process.cwd(), 'node_modules'));
@@ -31,6 +32,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /css-modules-require-hook/,
+        loader: 'null',
+      },
+      {
         test: /\.json$/,
         loader: 'json-loader',
       },
@@ -42,20 +47,21 @@ module.exports = {
         },
         exclude: /(node_modules)/,
       },
-
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]&minimize'),
+        exclude: /node_modules/,
+      },
 
     ],
   },
   plugins: [
-    new webpack.BannerPlugin(
-        'require("source-map-support").install();',
-        { raw: true, entryOnly: false }
-    ),
-    new webpack.IgnorePlugin(/\.(css|less|scss|svg|png|jpe?g|png)$/),
+    new webpack.IgnorePlugin(/\.(less|scss|svg|png|jpe?g|png)$/),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
       },
     }),
+    new ExtractTextPlugin(CSS_OUTPUT, { allChunks: true }),
   ],
 };

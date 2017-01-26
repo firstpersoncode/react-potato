@@ -14,7 +14,6 @@ module.exports = {
       'react-router',
       'redux',
       'react-redux',
-      'aphrodite',
     ],
   },
   output: {
@@ -50,6 +49,11 @@ module.exports = {
   ],
   module: {
     loaders: [
+      {
+        test: /\.css$/,
+        loader: 'css/locals?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]',
+        exclude: /node_modules/,
+      },
       {
         test: /\.js$/,
         loader: 'babel',

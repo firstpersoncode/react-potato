@@ -1,0 +1,9 @@
+.root {
+    max-width: 500;
+}
+
+.title {
+    font-size: 28px;
+    margin: 0 auto 1.5rem;
+    color: #b7b7b7;
+}

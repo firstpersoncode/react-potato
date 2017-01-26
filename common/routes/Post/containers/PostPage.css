@@ -1,0 +1,17 @@
+.content {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 1rem 0;
+    color: #555;
+}
+.title {
+    font-size: 28px;
+    margin: 0 auto 1.5rem;
+    color: #000;
+}
+
+.loading {
+    font-size: 28px;
+    margin: 0 auto 1.5rem;
+    color: #b7b7b7;
+}

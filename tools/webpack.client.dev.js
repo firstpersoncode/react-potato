@@ -17,7 +17,6 @@ module.exports = {
       'react-router',
       'redux',
       'react-redux',
-      'aphrodite',
     ],
   },
   output: {
@@ -27,14 +26,6 @@ module.exports = {
     path: CLIENT_OUTPUT,
   },
   module: {
-    preLoaders: [
-      {
-        // set up standard-loader as a preloader
-        test: /\.jsx?$/,
-        loader: 'eslint',
-        exclude: /(node_modules)/,
-      },
-    ],
     loaders: [
       {
         test: /\.js$/,
@@ -44,6 +35,11 @@ module.exports = {
           cacheDirectory: true,
           presets: ['es2015', 'react', 'stage-0'],
         },
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]',
+        exclude: /node_modules/,
       },
     ],
   },

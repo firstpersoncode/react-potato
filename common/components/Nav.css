@@ -1,0 +1,25 @@
+.link {
+    -webkit-transition: .2s opacity ease;
+    max-width: 700px;
+    color: #999;
+    margin: 1.5rem 1rem 1.5rem 0;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s opacity ease;
+}
+
+.link:hover {
+    opacity: 0.6;
+}
+
+.link:active {
+    -webkit-transition: .2s opacity ease;
+    max-width: 700px;
+    color: #000;
+    margin: 1.5rem 1rem 1.5rem 0;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s opacity ease;
+}

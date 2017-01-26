@@ -6,7 +6,7 @@
       "plugins": ["istanbul"]
     },
     "production": {
-      "presets": ["react-optimize"]
+      "presets": ["react-optimize"],
     }
   }
 }
