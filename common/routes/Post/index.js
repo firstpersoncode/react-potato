@@ -7,10 +7,10 @@ export default function createRoutes(store) {
     path: 'post/:slug',
     getComponents(location, cb) {
       require.ensure([
-        './containers/PostPage',
+        './container',
         './reducer',
       ], (require) => {
-        const PostPage = require('./containers/PostPage').default;
+        const PostPage = require('./container').default;
         const postReducer = require('./reducer').default;
         injectAsyncReducer(store, 'currentPost', postReducer);
         cb(null, PostPage);

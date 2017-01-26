@@ -1,3 +1,5 @@
+const serverConfig = require('../server/config');
+
 module.exports = {
-  generateScopedName: '[local]-[hash:base64:5]',
+  generateScopedName: serverConfig.cssModuleScope,
 };

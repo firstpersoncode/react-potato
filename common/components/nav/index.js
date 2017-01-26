@@ -1,7 +1,7 @@
 import React from 'react';
 import IndexLink from 'react-router/lib/IndexLink';
 import Link from 'react-router/lib/Link';
-import styles from './Nav.css';
+import styles from './nav.css';
 
 const Nav = () => (
   <div>

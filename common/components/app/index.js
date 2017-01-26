@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import Nav from './Nav';
-import styles from './App.css';
+import Nav from '../nav';
+import styles from './app.css';
 
 const App = ({ children }) => (
   <div className={styles.root}>

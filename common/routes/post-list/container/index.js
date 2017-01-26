@@ -3,9 +3,9 @@ import Helmet from 'react-helmet';
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { loadPosts } from '../actions';
-import PostListItem from '../components/PostListItem';
+import PostListItem from '../components/post-list-item';
 import { selectPosts } from '../reducer';
-import styles from './PostList.css';
+import styles from './post-list.css';
 
 const redial = {
   fetch: ({ dispatch }) => dispatch(loadPosts()),

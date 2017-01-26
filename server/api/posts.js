@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import fakeDB from '../fakeDB';
+import fakeDB from '../fake-db';
 const router = new Router();
 
 router.get('/', (req, res) => {

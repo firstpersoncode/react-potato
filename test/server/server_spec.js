@@ -1,8 +1,8 @@
 /* eslint-env mocha */
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import { createServer } from '../server';
-import fakeDB from '../server/fakeDB';
+import { createServer } from '../../server';
+import fakeDB from '../../server/fake-db';
 
 chai.use(chaiHttp);
 

@@ -4,7 +4,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import createReducer from './createReducer';
+import createReducer from './create-reducer';
 
 export function configureStore(initialState) {
   const store = createStore(createReducer(), initialState, compose(
@@ -23,7 +23,7 @@ export function configureStore(initialState) {
 
   if (process.env.NODE_ENV === 'development') {
     if (module.hot) {
-      module.hot.accept('./createReducer', () => store.replaceReducer(require('./createReducer').default));
+      module.hot.accept('./create-reducer', () => store.replaceReducer(require('./create-reducer').default));
     }
   }
 

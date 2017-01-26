@@ -3,9 +3,9 @@ import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { loadPost } from '../actions';
-import NotFound from '../../../components/NotFound';
+import NotFound from '../../../components/not-found';
 import { selectCurrentPost } from '../reducer';
-import styles from './PostPage.css';
+import styles from './post-page.css';
 
 const redial = {
   fetch: ({ dispatch, params: { slug } }) => dispatch(loadPost(slug)),

@@ -1,5 +1,5 @@
-import App from '../components/App';
-import Home from './Home';
+import App from '../components/app';
+import Home from './home';
 
 // polyfill webpack require.ensure
 if (typeof require.ensure !== 'function') require.ensure = (d, c) => c(require);
@@ -11,9 +11,9 @@ export default function createRoutes(store) {
     getChildRoutes(location, cb) {
       require.ensure([], (require) => {
         cb(null, [
-          require('./PostList').default(store), // no need to modify store, no reducer
-          require('./Post').default(store), // add async reducer
-          require('./NotFound').default,
+          require('./post-list').default(store), // no need to modify store, no reducer
+          require('./post').default(store), // add async reducer
+          require('./not-found').default,
         ]);
       });
     },

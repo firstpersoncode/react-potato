@@ -1,6 +1,6 @@
 import React from 'react';
 import data from '../data';
-import styles from './Home.css';
+import styles from './home.css';
 
 const Home = () => (
   <div>

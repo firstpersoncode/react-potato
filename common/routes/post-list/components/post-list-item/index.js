@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import styles from './PostListItem.css';
+import styles from './post-list-item.css';
 
 const PostListItem = ({ post }) => (
   <div className={styles.root}>

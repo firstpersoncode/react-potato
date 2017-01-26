@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const serverConfig = require('../server/config');
 const CONFIG = require('./webpack.base');
 
 const { CLIENT_ENTRY, CLIENT_OUTPUT } = CONFIG;
@@ -38,7 +39,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[local]-[hash:base64:5]',
+        loader: `style!css-loader?modules&importLoaders=1&localIdentName=${serverConfig.cssModuleScope}`,
         exclude: /node_modules/,
       },
     ],
