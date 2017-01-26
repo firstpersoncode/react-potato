@@ -14,9 +14,9 @@ const server = createServer({
 });
 
 describe('API', () => {
-  it('should list ALL posts on api/v0/posts GET', (done) => {
+  it('should list ALL posts on api/v1/posts GET', (done) => {
     chai.request(server)
-      .get('/api/v0/posts')
+      .get('/api/v1/posts')
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.text).to.be.an('string');
@@ -25,7 +25,7 @@ describe('API', () => {
       });
   });
 
-  it('should list ONE post on api/v0/posts/:slug GET', (done) => {
+  it('should list ONE post on api/v1/posts/:slug GET', (done) => {
     const post = {
       id: '128sd043hd',
       title: 'Cloth Talk Part I',
@@ -34,7 +34,7 @@ describe('API', () => {
     };
 
     chai.request(server)
-      .get(`/api/v0/posts/${post.slug}`)
+      .get(`/api/v1/posts/${post.slug}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.text).to.be.an('string');
