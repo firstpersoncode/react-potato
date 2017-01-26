@@ -10,8 +10,8 @@ const Nav = () => (
     </IndexLink>
     <Link to="/posts" className={styles.link}> Example Feed
     </Link>
-    <a href="https://github.com/jaredpalmer/react-production-starter" className={styles.link} target="_blank">GitHub</a>
-    <a href="https://twitter.com/jaredpalmer" className={styles.link} target="_blank">Twitter</a>
+    <a href="https://github.com/diruuu/react-potato" className={styles.link} target="_blank">GitHub</a>
+    <a href="https://twitter.com/diruuu" className={styles.link} target="_blank">Twitter</a>
   </div>
 );
 

@@ -8,10 +8,21 @@ const Home = () => (
     <p className={styles.lead}>
       This is an example react application (master-detail feed) with isomorphic rendering, async react-router routes, async redux reducers, async data fetching, and code-splitting.
     </p>
+    <p className={styles.lead}>This is purely a fork from <a href="https://github.com/jaredpalmer/react-production-starter">jaredpalmer/react-production-starter</a> except there are some changes I made by adding/removing some modules and tools.</p>
     <h2 className={styles.header}>Motivation</h2>
     <p className={styles.lead}>
       The file size of isomorphic React apps can quickly get out of hand. Many isomorphic starter kits look awesome to begin with but yield a several megabyte javascript
-      file for the client to download. This project aims to demonstrate some possible solutions.
+      file for the client to download. This project aims to demonstrate some possible solutions, one of them is by code splitting.
+    </p>
+    <h2 className={styles.header}>Changes</h2>
+    <p className={styles.lead}>
+      <ul>
+        <li>Changed Aphrodite CSS to CSS Loader</li>
+        <li>Changed ESLint rule to AirBnB Eslint rules</li>
+        <li>Refactored server entry point to provide API ready project structure</li>
+        <li>Change all folder structure to be more consistent</li>
+        <li>Unit test now can be put everywhere</li>
+      </ul>
     </p>
     <h2 className={styles.header}>Under the Hood</h2>
     <ul className={styles.list}>

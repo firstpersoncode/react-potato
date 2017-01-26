@@ -24,9 +24,9 @@ const data = [
     link: 'https://github.com/reactjs/react-router',
     description: 'A complete routing solution for React.js',
   },
-  { resource: 'Aphrodite for CSS',
-    link: 'https://github.com/Khan/aphrodite',
-    description: "Support for colocating your styles with your JavaScript component. It's inline styles, but they work!",
+  { resource: 'CSS Modules',
+    link: 'https://github.com/css-modules/css-modules',
+    description: 'CSS file in which all class names and animation names are scoped locally by default.',
   },
   {
     resource: 'React Helmet',

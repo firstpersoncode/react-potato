@@ -8,7 +8,7 @@ import Router from 'react-router/lib/Router';
 import match from 'react-router/lib/match';
 import browserHistory from 'react-router/lib/browserHistory';
 
-import { configureStore } from '../common/store';
+import { configureStore } from '../src/store';
 const initialState = window.INITIAL_STATE || {};
 // Set up Redux (note: this API requires redux@>=3.1.0):
 const store = configureStore(initialState);
@@ -20,7 +20,7 @@ const render = () => {
   const location = `${pathname}${search}${hash}`;
 
   // We need to have a root route for HMR to work.
-  const createRoutes = require('../common/routes/root').default;
+  const createRoutes = require('../src/routes/root').default;
   const routes = createRoutes(store);
 
   // Pull child routes using match. Adjust Router for vanilla webpack HMR,
@@ -71,7 +71,7 @@ const render = () => {
 const unsubscribeHistory = render();
 
 if (module.hot) {
-  module.hot.accept('../common/routes/root', () => {
+  module.hot.accept('../src/routes/root', () => {
     unsubscribeHistory();
     setTimeout(render);
   });

@@ -5,8 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Helm from 'react-helmet';
 import { trigger } from 'redial';
-import { configureStore } from '../../common/store';
-import createRoutes from '../../common/routes/root';
+import { configureStore } from '../../src/store';
+import createRoutes from '../../src/routes/root';
 
 export default (app, isProd, options) => {
   // match everything else
