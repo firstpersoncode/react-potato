@@ -58,6 +58,7 @@ module.exports = {
   },
   plugins: [
     new webpack.IgnorePlugin(/\.(less|scss|svg|png|jpe?g|png)$/),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
