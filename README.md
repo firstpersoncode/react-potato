@@ -8,7 +8,7 @@ This is purely a fork from [jaredpalmer/react-production-starter](https://github
 ## Changes
 Changes
 
-1. Changed Aphrodite CSS to CSS Loader
+1. Changed Aphrodite CSS to CSS Modules
 2. Changed ESLint rule to AirBnB Eslint rules
 3. Refactored server entry point to provide API ready project structure
 4. Change all folder structure to be more consistent
