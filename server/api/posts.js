@@ -1,24 +1,24 @@
-import { Router } from 'express';
 import fakeDB from '../fake-db';
-const router = new Router();
 
-router.get('/', (req, res) => {
-  setTimeout(() => {
-    res.status(200).json(fakeDB);
-  }, 300);
-});
+const OK = 200;
+const NOT_FOUND = 200;
+export default (router) => {
+  router.route('/').get((req, res) => {
+    setTimeout(() => {
+      res.status(OK).json(fakeDB);
+    }, 300);
+  });
 
-router.get('/:slug', (req, res) => {
-  const index = fakeDB.findIndex((el) => el.slug === req.params.slug);
-  if (index < 0) {
-    res.status(404).json({
-      error: 'Post does not exist in db',
-    });
-  }
+  router.route('/:slug').get((req, res) => {
+    const index = fakeDB.findIndex((el) => el.slug === req.params.slug);
+    if (index < 0) {
+      res.status(NOT_FOUND).json({
+        error: 'Post does not exist in db',
+      });
+    }
 
-  setTimeout(() => {
-    res.status(200).json(fakeDB[index]);
-  }, 300);
-});
-
-module.exports = router;
+    setTimeout(() => {
+      res.status(OK).json(fakeDB[index]);
+    }, 300);
+  });
+};

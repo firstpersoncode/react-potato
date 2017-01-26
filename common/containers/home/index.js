@@ -1,6 +1,6 @@
 import React from 'react';
-import data from '../data';
-import styles from './home.css';
+import data from './__mock__/data';
+import styles from './style.css';
 
 const Home = () => (
   <div>

@@ -2,10 +2,9 @@ import Helmet from 'react-helmet';
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadPost } from '../actions';
-import NotFound from '../../../components/not-found';
-import { selectCurrentPost } from '../reducer';
-import styles from './post-page.css';
+import { loadPost } from './actions';
+import { selectCurrentPost } from './reducer';
+import styles from './style.css';
 
 const redial = {
   fetch: ({ dispatch, params: { slug } }) => dispatch(loadPost(slug)),
@@ -30,7 +29,12 @@ const PostPage = ({ title, content, isLoading, error }) => {
       </div>
     );
   }
-  return <NotFound />;
+
+  return (
+    <div className={styles.error}>
+      Shit happened!
+    </div>
+  );
 };
 
 PostPage.propTypes = {

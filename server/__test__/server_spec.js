@@ -2,7 +2,7 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import { createServer } from '../../server';
-import fakeDB from '../../server/fake-db';
+import fakeDB from '../fake-db';
 
 chai.use(chaiHttp);
 

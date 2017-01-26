@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import * as types from '../../common/constants';
-import reducer from '../../common/routes/post/reducer';
+import * as types from '../../../constants';
+import reducer from '../reducer';
 
 // Remove this
 

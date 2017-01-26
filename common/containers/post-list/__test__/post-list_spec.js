@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import * as types from '../../common/constants';
-import reducer from '../../common/routes/post-list/reducer';
+import * as types from '../../../constants';
+import reducer from '../reducer';
 
 // Remove this
-import fakeDB from '../../server/fake-db';
+import fakeDB from '../../../../server/fake-db';
 
 describe('PostList Reducer', () => {
   const initialState = {

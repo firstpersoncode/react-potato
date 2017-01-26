@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
-import { loadPosts } from '../actions';
-import PostListItem from '../components/post-list-item';
-import { selectPosts } from '../reducer';
-import styles from './post-list.css';
+import { loadPosts } from './actions';
+import PostListItem from '../../components/post-list-item';
+import { selectPosts } from './reducer';
+import styles from './style.css';
 
 const redial = {
   fetch: ({ dispatch }) => dispatch(loadPosts()),

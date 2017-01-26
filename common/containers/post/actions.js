@@ -1,13 +1,13 @@
-import { LOAD_POSTS_REQUEST, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE } from '../../constants';
+import { LOAD_POST_REQUEST, LOAD_POST_SUCCESS, LOAD_POST_FAILURE } from '../../constants';
 
-export function loadPosts() {
+export function loadPost(slug) {
   return (dispatch, getState, { axios }) => {
     const { protocol, host } = getState().sourceRequest;
-    dispatch({ type: LOAD_POSTS_REQUEST });
-    return axios.get(`${protocol}://${host}/api/v0/posts`)
+    dispatch({ type: LOAD_POST_REQUEST });
+    return axios.get(`${protocol}://${host}/api/v1/posts/${slug}`)
       .then((res) => {
         dispatch({
-          type: LOAD_POSTS_SUCCESS,
+          type: LOAD_POST_SUCCESS,
           payload: res.data,
           meta: {
             lastFetched: Date.now(),
@@ -16,7 +16,7 @@ export function loadPosts() {
       })
       .catch((error) => {
         dispatch({
-          type: LOAD_POSTS_FAILURE,
+          type: LOAD_POST_FAILURE,
           payload: error,
           error: true,
         });
