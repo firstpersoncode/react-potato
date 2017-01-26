@@ -1,7 +1,7 @@
 {
-  "name": "react-production-starter",
+  "name": "react-potato",
   "version": "0.2.0",
-  "description": "Isomorphic React Starter with Redux, React Router, Redial, Aphrodite, Express, Webpack.",
+  "description": "Isomorphic React Starter with Redux, React Router, Redial, CSS Module, Eslint, Express, Webpack.",
   "scripts": {
     "test": "cross-env NODE_ENV=test ./node_modules/mocha/bin/mocha --compilers js:babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaredpalmer/react-production-starter.git"
+    "url": "git+https://github.com/diruuu/react-potato.git"
   },
   "keywords": [],
-  "author": "jaredpalmer",
+  "author": "katalika",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jaredpalmer/react-production-starter/issues"
+    "url": "https://github.com/diruuu/react-potato/issues"
   },
-  "homepage": "https://github.com/jaredpalmer/react-production-starter#readme",
+  "homepage": "https://github.com/diruuu/react-potato#readme",
   "dependencies": {
     "assets-webpack-plugin": "^3.3.0",
     "axios": "^0.15.0",
