@@ -13,3 +13,4 @@ Changes
 3. Refactored server entry point to provide API ready project structure
 4. Change all folder structure to be more consistent
 5. Unit test now can be put everywhere
+6. Jan 27: Added HTTP2 feature. Now you can choose to serve your file from http2 protocol.
