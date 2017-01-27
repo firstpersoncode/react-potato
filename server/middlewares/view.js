@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom/server';
 import Helm from 'react-helmet';
 import { trigger } from 'redial';
 import { configureStore } from '../../src/store';
-import createRoutes from '../../src/routes/root';
+import createRoutes from '../../src/routes';
 
 export default (app, isProd, options) => {
   // match everything else

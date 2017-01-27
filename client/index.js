@@ -20,7 +20,7 @@ const render = () => {
   const location = `${pathname}${search}${hash}`;
 
   // We need to have a root route for HMR to work.
-  const createRoutes = require('../src/routes/root').default;
+  const createRoutes = require('../src/routes').default;
   const routes = createRoutes(store);
 
   // Pull child routes using match. Adjust Router for vanilla webpack HMR,
@@ -71,7 +71,7 @@ const render = () => {
 const unsubscribeHistory = render();
 
 if (module.hot) {
-  module.hot.accept('../src/routes/root', () => {
+  module.hot.accept('../src/routes', () => {
     unsubscribeHistory();
     setTimeout(render);
   });

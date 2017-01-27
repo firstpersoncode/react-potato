@@ -15,15 +15,14 @@ const Home = () => (
       file for the client to download. This project aims to demonstrate some possible solutions, one of them is by code splitting.
     </p>
     <h2 className={styles.header}>Changes</h2>
-    <p className={styles.lead}>
-      <ul>
-        <li>Changed Aphrodite CSS to CSS Loader</li>
-        <li>Changed ESLint rule to AirBnB Eslint rules</li>
-        <li>Refactored server entry point to provide API ready project structure</li>
-        <li>Change all folder structure to be more consistent</li>
-        <li>Unit test now can be put everywhere</li>
-      </ul>
-    </p>
+    <ul className={styles.lead}>
+      <li>Changed Aphrodite CSS to CSS Loader</li>
+      <li>Changed ESLint rule to AirBnB Eslint rules</li>
+      <li>Refactored server entry point to provide API ready project structure</li>
+      <li>Change all folder structure to be more consistent</li>
+      <li>Unit test now can be put everywhere</li>
+      <li>Async route but with more semantic cod</li>
+    </ul>
     <h2 className={styles.header}>Under the Hood</h2>
     <ul className={styles.list}>
       {data.map((item, i) => (
