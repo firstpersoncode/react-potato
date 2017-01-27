@@ -1,5 +1,5 @@
-const serverConfig = require('../server/config');
+const config = require('../config/webpack');
 
 module.exports = {
-  generateScopedName: serverConfig.cssModuleScope,
+  generateScopedName: config.cssModuleScope,
 };

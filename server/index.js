@@ -8,12 +8,15 @@ import morgan from 'morgan';
 import compression from 'compression';
 import hpp from 'hpp';
 import throng from 'throng';
+import fs from 'fs';
+import path from 'path';
+import spdy from 'spdy';
 
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-import DefaultServerConfig from './config';
+import defaultServerConfig from '../config/server';
 import webpackConfig from '../tools/webpack.client.dev';
 import { compileDev, startDev } from '../tools/dx';
 
@@ -54,7 +57,17 @@ export const createServer = (config) => {
   // Views
   m.viewMiddleware(app, __PROD__, { assets });
 
-  const server = http.createServer(app);
+  // Setup server to use http2 or old http. Configure it on /config/server.js
+  let server;
+  if (defaultServerConfig.http2) {
+    const options = {
+      key: fs.readFileSync(path.join(process.cwd(), 'server', 'certificate', 'server.key')),
+      cert: fs.readFileSync(path.join(process.cwd(), 'server', 'certificate', 'server.crt')),
+    };
+    server = spdy.createServer(options, app);
+  } else {
+    server = http.createServer(app);
+  }
   /*
    * Heroku dynos automatically timeout after 30s. Set our
    * own timeout here to force sockets to close before that.
@@ -81,7 +94,7 @@ export const createServer = (config) => {
 
 
 export const startServer = (serverConfig) => {
-  const config = { ...DefaultServerConfig, ...serverConfig };
+  const config = { ...defaultServerConfig, ...serverConfig };
   const server = createServer(config);
   server.listen(config.port, (err) => {
     if (config.nodeEnv === 'production' || config.nodeEnv === 'test') {
