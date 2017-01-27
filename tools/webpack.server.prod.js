@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const serverConfig = require('../server/config');
+const webpackConfig = require('../config/webpack');
 
 const CONFIG = require('./webpack.base');
 const { SERVER_ENTRY, SERVER_OUTPUT, CSS_OUTPUT } = CONFIG;
@@ -50,7 +50,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', `css?modules&importLoaders=1&localIdentName=${serverConfig.cssModuleScope}&minimize`),
+        loader: ExtractTextPlugin.extract('style', `css?modules&importLoaders=1&localIdentName=${webpackConfig.cssModuleScope}&minimize`),
         exclude: /node_modules/,
       },
 

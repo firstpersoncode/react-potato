@@ -4,12 +4,14 @@ import chalk from 'chalk';
 import opn from 'opn';
 import { execSync } from 'child_process';
 import path from 'path';
+import serverConfig from '../config/server'
 
 function clearConsole() {
   process.stdout.write('\x1B[2J\x1B[0f');
 }
 
 const friendlySyntaxErrorLabel = 'Syntax error:';
+const homeURL = (port) => (serverConfig.http2 ? `https://localhost:${port}/` : `http://localhost:${port}/`)
 
 function isLikelyASyntaxError(message) {
   return message.indexOf(friendlySyntaxErrorLabel) !== -1;
@@ -49,7 +51,7 @@ export const compileDev = (compiler, port) => {
     if (!hasErrors && !hasWarnings) {
       console.log(chalk.green('Compiled successfully!'));
       console.log();
-      console.log(`The app is running at http://localhost:${port}/`);
+      console.log(`The app is running at ${homeURL(port)}`);
       console.log();
       console.log(chalk.gray('Note that the development build is not optimized.'));
       console.log(chalk.gray(`To create a production build, use ${chalk.cyan('npm run build')}.`));
@@ -113,7 +115,7 @@ function openBrowser(port) {
       execSync(
         `osascript ${
         path.resolve(__dirname, 'chrome.applescript')
-        } http://localhost:${port}/`
+      } ${homeURL(port)}`
       );
       return;
     } catch (err) {
@@ -122,7 +124,7 @@ function openBrowser(port) {
   }
   // Fallback to opn
   // (It will always open new tab)
-  opn(`http://localhost:${port}/`);
+  opn(homeURL(port));
 }
 
 export const startDev = (port, err) => {

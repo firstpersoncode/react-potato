@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const serverConfig = require('../server/config');
+const webpackConfig = require('../config/webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 
 const CONFIG = require('./webpack.base');
@@ -52,7 +52,7 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loader: `css/locals?modules&importLoaders=1&localIdentName=${serverConfig.cssModuleScope}`,
+        loader: `css/locals?modules&importLoaders=1&localIdentName=${webpackConfig.cssModuleScope}`,
         exclude: /node_modules/,
       },
       {
