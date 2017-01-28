@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import * as asyncComponent from './async';
+import routes from './async';
 import serviceWorkerConfig from '../../config/service-worker';
 
 // Components
@@ -13,7 +13,7 @@ import NotFound from '../containers/not-found';
 // Add chuck from code-splitting to cache on serviceWorker
 const cacheOnEnter = (nextState) => {
   const { pathname } = nextState.location;
-  if (typeof window !== 'undefined' && 'serviceWorker' in navigator && serviceWorkerConfig.active) {
+  if (typeof window !== 'undefined' && 'serviceWorker' in navigator && serviceWorkerConfig.active && navigator.serviceWorker.controller) {
     navigator.serviceWorker.controller.postMessage({
       type: 'ADD_CHUNK',
       payload: pathname,
@@ -21,19 +21,25 @@ const cacheOnEnter = (nextState) => {
   }
 };
 
+const asyncRoutes = (store) => routes.map((route, key) => {
+  const { path, component } = route;
+  return (
+    <Route
+      path={path}
+      getComponent={(nextState, cb) => component(nextState, cb, store)}
+      onEnter={cacheOnEnter}
+      key={key} />
+  );
+});
+
 export default (store) => (
   <Route
     component={App}
     path="/">
     <IndexRoute component={Home} />
-    <Route
-      path="post/:slug"
-      getComponent={(nextState, cb) => asyncComponent.post(nextState, cb, store)}
-      onEnter={cacheOnEnter} />
-    <Route
-      path="posts"
-      getComponent={(nextState, cb) => asyncComponent.postList(nextState, cb, store)}
-      onEnter={cacheOnEnter} />
+    {/* Do not edit if your route is async. Load it on /async/index.js instead */}
+    {asyncRoutes(store)}
+    {/* If you route is not async you can add here */}
     <Route path="*" component={NotFound} />
   </Route>
 );

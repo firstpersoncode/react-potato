@@ -1,2 +1,10 @@
-export { default as post } from './post';
-export { default as postList } from './post-list';
+import postAsync from './post';
+import postListAsync from './post-list';
+
+export default [{
+  path: 'post/:slug',
+  component: postAsync,
+}, {
+  path: 'posts',
+  component: postListAsync,
+}];
