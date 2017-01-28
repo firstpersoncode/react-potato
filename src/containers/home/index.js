@@ -22,6 +22,8 @@ const Home = () => (
       <li>Change all folder structure to be more consistent</li>
       <li>Unit test now can be put everywhere</li>
       <li>Async route but with more semantic cod</li>
+      <li>Added HTTP2 feature.</li>
+      <li>Added Service Worker feature.</li>
     </ul>
     <h2 className={styles.header}>Under the Hood</h2>
     <ul className={styles.list}>

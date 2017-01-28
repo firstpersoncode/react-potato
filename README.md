@@ -15,3 +15,4 @@ Changes
 5. Unit test now can be put everywhere
 6. Async route but with more semantic code
 7. Jan 27: Added HTTP2 feature. Now you can choose to serve your file from http2 protocol.
+8. Jan 28: Added Service Worker feature.
