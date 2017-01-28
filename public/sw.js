@@ -11,15 +11,13 @@ const assetList = (assetObject) => {
 
 // Register the service worker
 self.addEventListener('install', (event) => {
-  console.log('Service worker installed');
-
   event.waitUntil(caches.open(CACHE_NAME)
     .then((cache) => {
       fetch('/assets/assets.json')
         .then((response) => response.json())
         .then((result) => {
           const assetsArray = assetList(result);
-          cache.addAll(assetsArray);
+          cache.addAll(['/', ...assetsArray]);
         });
     })
     .then(() => self.skipWaiting()));
