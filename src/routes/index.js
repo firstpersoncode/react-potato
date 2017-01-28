@@ -10,7 +10,7 @@ import App from '../containers/app';
 import Home from '../containers/home';
 import NotFound from '../containers/not-found';
 
-// Change assets for ServiceWorker
+// Add chuck from code-splitting to cache on serviceWorker
 const cacheOnEnter = (nextState) => {
   const { pathname } = nextState.location;
   if (typeof window !== 'undefined' && 'serviceWorker' in navigator && serviceWorkerConfig.active) {
@@ -26,8 +26,14 @@ export default (store) => (
     component={App}
     path="/">
     <IndexRoute component={Home} />
-    <Route path="post/:slug" getComponent={(nextState, cb) => asyncComponent.post(nextState, cb, store)} onEnter={cacheOnEnter} />
-    <Route path="posts" getComponent={(nextState, cb) => asyncComponent.postList(nextState, cb, store)} onEnter={cacheOnEnter} />
+    <Route
+      path="post/:slug"
+      getComponent={(nextState, cb) => asyncComponent.post(nextState, cb, store)}
+      onEnter={cacheOnEnter} />
+    <Route
+      path="posts"
+      getComponent={(nextState, cb) => asyncComponent.postList(nextState, cb, store)}
+      onEnter={cacheOnEnter} />
     <Route path="*" component={NotFound} />
   </Route>
 );
