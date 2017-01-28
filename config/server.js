@@ -3,7 +3,7 @@ const config = {
   webConcurrency: process.env.WEB_CONCURRENCY || 1,
   port: process.env.PORT || 5000,
   timeout: 29000,
-  http2: true,
+  http2: false,
 };
 
 module.exports = config;

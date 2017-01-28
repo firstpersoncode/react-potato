@@ -36,7 +36,7 @@ export const createServer = (config) => {
     app.use(hpp());
     app.use(compression());
     if (__PROD__) {
-      assets = require('../assets.json');
+      assets = require('../public/assets/assets.json');
     }
   } else {
     app.use(morgan('dev'));

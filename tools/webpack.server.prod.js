@@ -3,11 +3,10 @@
 const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpackConfig = require('../config/webpack');
 
 const CONFIG = require('./webpack.base');
-const { SERVER_ENTRY, SERVER_OUTPUT, CSS_OUTPUT } = CONFIG;
+const { SERVER_ENTRY, SERVER_OUTPUT } = CONFIG;
 
 function getExternals() {
   const nodeModules = fs.readdirSync(path.join(process.cwd(), 'node_modules'));
@@ -50,7 +49,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style', `css?modules&importLoaders=1&localIdentName=${webpackConfig.cssModuleScope}&minimize`),
+        loader: `css/locals?modules&importLoaders=1&localIdentName=${webpackConfig.cssModuleScope}`,
         exclude: /node_modules/,
       },
 
@@ -64,6 +63,5 @@ module.exports = {
         warnings: false,
       },
     }),
-    new ExtractTextPlugin(CSS_OUTPUT, { allChunks: true }),
   ],
 };

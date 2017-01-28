@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const webpackConfig = require('../config/webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CONFIG = require('./webpack.base');
 const { CLIENT_ENTRY, CLIENT_OUTPUT, PUBLIC_PATH } = CONFIG;
@@ -31,7 +32,10 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor_[hash].js', 2),
-    new AssetsPlugin({ filename: 'assets.json' }),
+    new AssetsPlugin({
+      filename: 'assets.json',
+      path: CLIENT_OUTPUT,
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -47,12 +51,13 @@ module.exports = {
       },
     }),
     new webpack.NoErrorsPlugin(),
+    new ExtractTextPlugin('style_[contenthash].css', { allChunks: true }),
   ],
   module: {
     loaders: [
       {
         test: /\.css$/,
-        loader: `css/locals?modules&importLoaders=1&localIdentName=${webpackConfig.cssModuleScope}`,
+        loader: ExtractTextPlugin.extract('style', `css?modules&importLoaders=1&localIdentName=${webpackConfig.cssModuleScope}&minimize`),
         exclude: /node_modules/,
       },
       {

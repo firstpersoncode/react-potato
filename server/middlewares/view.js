@@ -53,6 +53,7 @@ export default (app, isProd, options) => {
 
           const html = ReactDOM.renderToString(InitialView);
           const head = Helm.rewind();
+
           res.status(200).send(`
             <!DOCTYPE html>
             <html lang="en">
@@ -62,7 +63,7 @@ export default (app, isProd, options) => {
                 ${head.title.toString()}
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <link rel="shortcut icon" href="/favicon.ico">
-                ${isProd ? '<link rel="stylesheet" type="text/css" href="/assets/style.css">' : ''}
+                ${isProd ? `<link rel="stylesheet" type="text/css" href="${options.assets.main.css}">` : ''}
                 ${head.meta.toString()}
                 ${head.link.toString()}
               </head>

@@ -7,8 +7,12 @@ import ReactDOM from 'react-dom';
 import Router from 'react-router/lib/Router';
 import match from 'react-router/lib/match';
 import browserHistory from 'react-router/lib/browserHistory';
-
+import serviceWorkerConfig from '../config/service-worker';
+import serverConfig from '../config/server';
 import { configureStore } from '../src/store';
+
+const __DEV__ = serverConfig.nodeEnv === 'development';
+
 const initialState = window.INITIAL_STATE || {};
 // Set up Redux (note: this API requires redux@>=3.1.0):
 const store = configureStore(initialState);
@@ -75,4 +79,42 @@ if (module.hot) {
     unsubscribeHistory();
     setTimeout(render);
   });
+}
+
+// Register serviceWorker
+function registerServiceWorker() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register(serviceWorkerConfig.swFile).then((registration) => {
+        // Registration was successful
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      }).catch((err) => {
+        // registration failed :(
+        console.log('ServiceWorker registration failed: ', err);
+      });
+    });
+  }
+}
+
+function unregisterServiceWorker() {
+  // unregister the service workers
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistration().then((registration) => {
+      if (registration) {
+        registration.unregister();
+        console.log('ServiceWorker unregistrated succesfully');
+      }
+    });
+  }
+  // Remove old cache
+  caches.keys().then((keyList) =>
+    Promise.all(keyList.map((key) =>
+      caches.delete(key)
+        .then(() => console.log('Old caches deleted succesfully')))));
+}
+
+if (serviceWorkerConfig.active && !__DEV__) {
+  registerServiceWorker();
+} else {
+  unregisterServiceWorker();
 }
