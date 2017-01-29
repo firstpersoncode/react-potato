@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as types from '../../../constants';
+import { actionConstants } from '../actions';
 import reducer from '../reducer';
 
 // Remove this
@@ -20,7 +20,7 @@ describe('Post Reducer', () => {
 
   it('should handle LOAD_POST_REQUEST', () => {
     const action = {
-      type: types.LOAD_POST_REQUEST,
+      type: actionConstants.LOAD_POST_REQUEST,
     };
 
     const expectedNextState = {
@@ -44,7 +44,7 @@ describe('Post Reducer', () => {
     };
     const currentTime = Date.now();
     const action = {
-      type: types.LOAD_POST_SUCCESS,
+      type: actionConstants.LOAD_POST_SUCCESS,
       payload: post,
       meta: {
         lastFetched: currentTime,
@@ -66,7 +66,7 @@ describe('Post Reducer', () => {
   it('should handle LOAD_POST_FAILURE', () => {
     const error = new Error('Invalid request');
     const action = {
-      type: types.LOAD_POST_FAILURE,
+      type: actionConstants.LOAD_POST_FAILURE,
       payload: error,
       error: true,
     };

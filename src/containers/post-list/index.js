@@ -1,34 +1,44 @@
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { provideHooks } from 'redial';
 import React, { PropTypes } from 'react';
-import { loadPosts } from './actions';
+import { connect } from 'react-redux';
+import { loadPostList } from './actions';
 import PostListItem from '../../components/post-list-item';
-import { selectPosts } from './reducer';
 import styles from './style.css';
 
 const redial = {
-  fetch: ({ dispatch }) => dispatch(loadPosts()),
+  fetch: ({ dispatch }) => dispatch(loadPostList()),
 };
 
 const mapStateToProps = (state) => ({
-  posts: selectPosts(state),
+  postListState: state.postListState,
 });
 
-const PostListPage = ({ posts }) => (
-  <div className={styles.root}>
-    <Helmet title="Posts" />
-    {posts.isLoading &&
+const PostList = ({ postListState: { isLoading, error, data } }) => {
+  if (!error) {
+    return (
       <div>
-        <h2 className={styles.title}>Loading....</h2>
-      </div>}
-    {!posts.isLoading &&
-      posts.data.map((post) => <PostListItem key={post.id} post={post} />)}
-  </div>
-);
-
-PostListPage.propTypes = {
-  posts: PropTypes.object.isRequired,
+        <Helmet title="" />
+        {isLoading ? (
+          <div>
+            <h2 className={styles.loading}>Loading....</h2>
+          </div>
+        ) : data.map((post) => (
+          <PostListItem key={post.id} post={post} />
+        ))}
+      </div>
+    );
+  }
+  // When error occured
+  return (
+    <div className={styles.error}>
+      Shit happened!
+    </div>
+  );
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(PostListPage));
+PostList.propTypes = {
+  postListState: PropTypes.object,
+};
+
+export default provideHooks(redial)(connect(mapStateToProps)(PostList));

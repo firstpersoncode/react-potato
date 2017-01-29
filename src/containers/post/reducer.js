@@ -1,4 +1,5 @@
-import * as types from '../../constants';
+import * as Immutable from 'immutable';
+import { actionConstants } from './actions';
 
 const initialState = {
   lastFetched: null,
@@ -8,31 +9,26 @@ const initialState = {
   content: '',
 };
 
-export default function currentPost(state = initialState, action) {
+export default function PostState(state = initialState, action) {
+  const immutableState = Immutable.Map(state);
   switch (action.type) {
-    case types.LOAD_POST_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-        error: null,
-      };
-    case types.LOAD_POST_SUCCESS:
-      return {
-        ...state,
-        title: action.payload.title,
-        content: action.payload.content,
-        lastFetched: action.meta.lastFetched,
-        isLoading: false,
-      };
-    case types.LOAD_POST_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-      };
+    case actionConstants.LOAD_POST_REQUEST:
+      return immutableState
+        .set('isLoading', true)
+        .set('error', null)
+        .toJS();
+    case actionConstants.LOAD_POST_SUCCESS:
+      return immutableState
+        .set('title', action.payload.title)
+        .set('content', action.payload.content)
+        .set('lastFetched', action.meta.lastFetched)
+        .set('isLoading', false)
+        .toJS();
+    case actionConstants.LOAD_POST_FAILURE:
+      return immutableState
+        .set('error', action.payload)
+        .toJS();
     default:
       return state;
   }
 }
-
-// Example of a co-located selector
-export const selectCurrentPost = (state) => state.currentPost;

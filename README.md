@@ -51,7 +51,6 @@ This is purely a fork from [jaredpalmer/react-production-starter](https://github
 | /src/containers              | Directory for smart / routing react component                                                                           |
 | /src/routes/index.js         | Routes for the app                                                                                                      |
 | /src/routes/async            | Directory for configurations to lazy load the react component to react-router                                           |
-| /src/constants.js            | Constant for redux action and reducer. Will be deprecated in the future. Constant will be moved to each redux action    |
 | /static                      | Directory to put static file. Can be accessed from `/static` path                                                         |
 | /tools                       | Directory for webpack configuration and other webpack stuff                                                             |
 

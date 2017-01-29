@@ -8,7 +8,7 @@ export default (nextState, cb, store) => {
   ], (require) => {
     const PostPage = require('../../containers/post-list').default;
     const postReducer = require('../../containers/post-list/reducer').default;
-    injectAsyncReducer(store, 'posts', postReducer);
+    injectAsyncReducer(store, 'postListState', postReducer);
     cb(null, PostPage);
   });
 };

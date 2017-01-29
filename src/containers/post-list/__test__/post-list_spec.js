@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as types from '../../../constants';
+import { actionConstants } from '../actions';
 import reducer from '../reducer';
 
 // Remove this
@@ -18,9 +18,9 @@ describe('PostList Reducer', () => {
     expect(nextState).to.deep.equal(initialState);
   });
 
-  it('should handle LOAD_POSTS_REQUEST', () => {
+  it('should handle LOAD_POST_LIST_REQUEST', () => {
     const action = {
-      type: types.LOAD_POSTS_REQUEST,
+      type: actionConstants.LOAD_POST_LIST_REQUEST,
     };
 
     const expectedNextState = {
@@ -34,11 +34,11 @@ describe('PostList Reducer', () => {
     expect(nextState).to.deep.equal(expectedNextState);
   });
 
-  it('should handle LOAD_POSTS_SUCCESS', () => {
+  it('should handle LOAD_POST_LIST_SUCCESS', () => {
     const currentTime = Date.now();
 
     const action = {
-      type: types.LOAD_POSTS_SUCCESS,
+      type: actionConstants.LOAD_POST_LIST_SUCCESS,
       payload: fakeDB,
       meta: {
         lastFetched: currentTime,
@@ -56,10 +56,10 @@ describe('PostList Reducer', () => {
     expect(nextState).to.deep.equal(expectedNextState);
   });
 
-  it('should handle LOAD_POSTS_FAILURE', () => {
+  it('should handle LOAD_POST_LIST_FAILURE', () => {
     const error = new Error('Invalid request');
     const action = {
-      type: types.LOAD_POSTS_FAILURE,
+      type: actionConstants.LOAD_POST_LIST_FAILURE,
       payload: error,
       error: true,
     };
